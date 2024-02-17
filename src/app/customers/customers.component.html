@@ -1,1 +1,31 @@
 <p>customers works!</p>
+<div class="grid" style="margin-top: 12em;">
+    <h3>Клиенты</h3>
+    <div id="customer-controll">
+</div>
+    </div>
+    <div id="customers">
+        <div id="header" class="grid">
+          <div class="cell">Название организации</div>
+          <div class="cell">Контактное лицо</div>
+          <div class="cell">Куратор</div>
+        </div>
+        <div class="list grid" *ngFor="let customer of customerList">
+          <div class="cell">{{ customer.title }}</div>
+          <div class="cell">{{ customer.contactPerson }}</div>
+          <div class="cell">{{ customer.responsiblePerson }}</div>
+        </div>    
+      </div>
+    
+      <form #companyForm="ngForm" (ngSubmit)="submitForm(companyForm)">
+          <input matInput placeholder="Название юр. лица" name="companyTitle" ngModel required>
+     
+          <input matInput placeholder="Юр и факт адресс" name="address" ngModel required>
+     
+          <input matInput placeholder="Телефон" name="phone" ngModel required>
+   
+          <input matInput placeholder="ИНН" name="inn" ngModel required>
+          <input matInput placeholder="Сайт" name="website" ngModel>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </form>
+    
