@@ -1,0 +1,40 @@
+@header-bg-color: #f8f8f8;
+@header-text-color: #333;
+@cell-padding: 10px;
+@cell-border: 1px solid #ddd;
+
+#customer-header,
+#customer-list {
+  display: flex;
+  justify-content: space-between; // Ensure even spacing between cells
+}
+
+#customer-header {
+  background-color: @header-bg-color;
+  color: @header-text-color;
+  font-weight: bold;
+  padding: @cell-padding;
+  flex: 0 0 auto; // Prevent the header from growing or shrinking
+}
+
+#customer-list {
+  flex: 1 1 auto; // Allow the list to grow and shrink as needed
+  overflow-y: auto; // Add scroll for list overflow
+}
+
+.cell {
+  padding: @cell-padding;
+  border: @cell-border;
+  box-sizing: border-box;
+  flex: 1; // Allow each cell to grow equally
+  text-align: center; // Center text within cells
+}
+
+
+
+
+#container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto; // Allow the container to grow and shrink
+}

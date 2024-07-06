@@ -1,31 +1,50 @@
-<p>customers works!</p>
 <div class="grid" style="margin-top: 12em;">
-    <h3>Клиенты</h3>
+    <h3>Customers</h3>
     <div id="customer-controll">
 </div>
+<div id="customers">
+    <div id="customer-header">
+      <div class="cell">Company</div>
+      <div class="cell">Contact Person</div>
+      <div class="cell">Manager</div>
+      <div class="cell"></div>
     </div>
-    <div id="customers">
-        <div id="header" class="grid">
-          <div class="cell">Название организации</div>
-          <div class="cell">Контактное лицо</div>
-          <div class="cell">Куратор</div>
-        </div>
-        <div class="list grid" *ngFor="let customer of customerList">
-          <div class="cell">{{ customer.title }}</div>
-          <div class="cell">{{ customer.contactPerson }}</div>
-          <div class="cell">{{ customer.responsiblePerson }}</div>
-        </div>    
+    <div id="customer-list" class="list grid" *ngFor="let customer of customerList">
+      <div class="cell">{{ customer.title }}</div>
+      <div class="cell">{{ customer.contactPerson }}</div>
+      <div class="cell">{{ customer.responsiblePerson }}</div>
+      <div class="cell">
+          <a href="#">Редактировать</a>
       </div>
-    
-      <form #companyForm="ngForm" (ngSubmit)="submitForm(companyForm)">
-          <input matInput placeholder="Название юр. лица" name="companyTitle" ngModel required>
-     
-          <input matInput placeholder="Юр и факт адресс" name="address" ngModel required>
-     
-          <input matInput placeholder="Телефон" name="phone" ngModel required>
-   
-          <input matInput placeholder="ИНН" name="inn" ngModel required>
-          <input matInput placeholder="Сайт" name="website" ngModel>
-        <button mat-raised-button color="primary" type="submit">Submit</button>
-      </form>
-    
+    </div>    
+  </div>
+  <button (click)="toggleIframe()">Toggle iFrame</button>
+  <div [@toggleIframe]="isIframeVisible ? 'visible' : 'hidden'" *ngIf="isIframeVisible">
+    <iframe 
+    srcdoc="
+    <form>
+      <label for='name'>Name:</label>
+      <input type='text' id='name' name='name'>
+      
+      <label for='email'>Email:</label>
+      <input type='email' id='email' name='email'>
+      
+      <label for='message'>Message:</label>
+      <textarea id='message' name='message'></textarea>
+      
+      <button type='submit'>Submit</button>
+    </form>
+    "
+    width="600" height="400"></iframe>
+  </div>
+  <form #companyForm="ngForm" (ngSubmit)="submitForm(companyForm)">
+      <input matInput placeholder="Название юр. лица" name="companyTitle" ngModel required>
+  
+      <input matInput placeholder="Юр и факт адресс" name="address" ngModel required>
+  
+      <input matInput placeholder="Телефон" name="phone" ngModel required>
+
+      <input matInput placeholder="ИНН" name="inn" ngModel required>
+      <input matInput placeholder="Сайт" name="website" ngModel>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
