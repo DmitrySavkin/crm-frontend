@@ -1,0 +1,6 @@
+<h2>Login</h2>
+<form [formGroup]="loginForm">
+    <input type="text" formControlName="username"  placeholder="Username"><br>
+    <input type="{{hidePassword ? 'password':'text'}}" formControlName="password" placeholder="password"><br>
+    <button type="submit" (click)="onSubmit()" >Login</button>
+</form>  
