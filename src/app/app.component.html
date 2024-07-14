@@ -1,8 +1,29 @@
-<nav>
-  <ul>
-    <li><a routerLink="/customers" routerLinkActive="active">Customer</a></li>
-    <li><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
-  </ul>
-</nav>
+<div *ngIf="!isAdminLoggedIn && !isManagerLoggedIn">
+  <nav>
+    <ul>
+      <li><a routerLink="/customers" routerLinkActive="active">Help</a></li>
+      <li><a  routerLinkActive="active" (click)="logout()">Logout</a></li>
+    </ul>
+  </nav>
+</div>
 
+<div *ngIf="isManagerLoggedIn">
+  <nav>
+    <ul>
+      <li><a routerLink="/customers" routerLinkActive="active">Customer</a></li>
+      <li><a  routerLinkActive="active" (click)="logout()">Logout</a></li>
+    </ul>
+  </nav>
+</div>
+
+
+<div *ngIf="isAdminLoggedIn">
+  <nav>
+    <ul>
+      <li><a routerLink="/customers" routerLinkActive="active">Customer</a></li>
+      <li><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
+      <li><a  routerLinkActive="active" (click)="logout()">Logout</a></li>
+    </ul>
+  </nav>
+</div>
 <router-outlet></router-outlet>
