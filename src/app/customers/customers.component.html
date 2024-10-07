@@ -14,28 +14,24 @@
       <div class="cell">{{ customer.contactPerson }}</div>
       <div class="cell">{{ customer.responsiblePerson }}</div>
       <div class="cell">
-          <a href="#">Редактировать</a>
+          <div (click)="toggleIframe()">Редактировать</div>
       </div>
     </div>    
   </div>
-  <button (click)="toggleIframe()">Toggle iFrame</button>
-  <div [@toggleIframe]="isIframeVisible ? 'visible' : 'hidden'" *ngIf="isIframeVisible">
-    <iframe 
-    srcdoc="
-    <form>
-      <label for='name'>Name:</label>
-      <input type='text' id='name' name='name'>
+  <button >Toggle iFrame</button>
+  <div  *ngIf="isIframeVisible">
+    <form  [formGroup]="editCustomerForm">
+      <label for='name'>Company:</label>
+      <input type='text' formControlName="title">
       
-      <label for='email'>Email:</label>
-      <input type='email' id='email' name='email'>
+      <label for='email'>Contact Person:</label>
+      <input type='text' formControlName="contactPerson">
       
       <label for='message'>Message:</label>
       <textarea id='message' name='message'></textarea>
       
       <button type='submit'>Submit</button>
     </form>
-    "
-    width="600" height="400"></iframe>
   </div>
   <form #companyForm="ngForm" (ngSubmit)="submitForm(companyForm)">
       <input matInput placeholder="Название юр. лица" name="companyTitle" ngModel required>

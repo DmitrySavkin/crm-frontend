@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserStorageService } from './services/storage/user-storage.service';
 import { Router } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',

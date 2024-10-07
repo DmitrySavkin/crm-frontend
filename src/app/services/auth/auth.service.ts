@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { UserStorageService } from '../storage/user-storage.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,15 @@ export class AuthService {
   
 
   constructor(private http: HttpClient,
-              private userStorageService: UserStorageService  ) { }
+              private userStorageService: UserStorageService,
+              private  router: Router
+            ) { }
 
   login(username: any, password: any) : any{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const body = {username, password};
     console.log(body);
+    this.router.navigateByUrl("/customers");
     return true;
     /*
     this.http.post('url later' + 'login', body, {headers, observe: 'response'} ).pipe(

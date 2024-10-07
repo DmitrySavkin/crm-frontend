@@ -3,6 +3,8 @@ import { Customer } from './customer';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CustomersService } from './service/customers.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-customers',
@@ -29,7 +31,31 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class CustomersComponent implements OnInit {
 
   isIframeVisible = false;
-  constructor(private customerService: CustomersService) {}
+  public editCustomerForm!: FormGroup
+  
+  constructor(private customerService: CustomersService,
+    private formBuilder: FormBuilder
+  ) {
+
+    this.editCustomerForm = this.formBuilder.group(
+      {
+         customers: this.formBuilder.array(this.customerList.map(
+            customer => this.formBuilder.group({
+              id:0,
+              title: this.formBuilder.control(customer.title),
+              contactPerson: this.formBuilder.control(customer.contactPerson),
+              responsiblePerson: ""
+            })
+          )) 
+
+
+      })
+  }
+
+  createEditForm() {
+
+
+  }
   customer: Customer = {
 
       id:0,
@@ -58,7 +84,13 @@ export class CustomersComponent implements OnInit {
 
   toggleIframe() {
     this.isIframeVisible = !this.isIframeVisible;
+    return false;
   }
+
+  submitOnEdit() {
+    console.log(this.editCustomerForm);
+  }
+
   
   submitForm(form: any): void {
     // Handle form submission here
